@@ -21,26 +21,27 @@ def normalize_values(filename):
     csv_values_perc.reverse()
     csv_values_dates.reverse()
 
-    print(csv_values_dates)
-    print(csv_values_perc)
+    #print(csv_values_dates)
+    #print(csv_values_perc)
     positive_ones = []
     negative_ones = []
 
+    weeks_duration = 104
     coefficient = 1
     total = 0
     counter = 0
     max = 0
     min = 1000000000000
     listSize = len(csv_values_dates)
-    for x in range(0,listSize - 104):
-        difference = (float(csv_values_perc[x+104].replace("'","").replace(',','.'))-float(csv_values_perc[x].replace("'","").replace(',','.')))/float(csv_values_perc[x].replace("'","").replace(',','.'))
+    for x in range(0,listSize - weeks_duration):
+        difference = (float(csv_values_perc[x+weeks_duration].replace("'","").replace(',','.'))-float(csv_values_perc[x].replace("'","").replace(',','.')))/float(csv_values_perc[x].replace("'","").replace(',','.'))
         total = total + difference
         if (difference > max):
             max = difference
         if (difference < min):
             min = difference
         counter = counter +1
-        print("date" + csv_values_dates[x] + " diff: " + str(difference))
+        #print("date" + csv_values_dates[x] + " diff: " + str(difference))
         if difference>=0:
              positive_ones.append(str(csv_values_dates[x]) + " " + str(difference))
         else:
@@ -61,8 +62,19 @@ def normalize_values(filename):
 
 
 
-
+print('Usa')
 USAINDEX = normalize_values("./LP68022608 Historiska data.csv")
+print('Europa')
+EUROPAINDEX = normalize_values("./0P0000KBNA Historiska data.csv")
+print('Avanza')
+AVANZAINDEX = normalize_values("./0P0001ECQR Historiska data.csv")
+print('Nordnet')
+NORDNETINDEX = normalize_values("./0P0001K6NH Historiska data.csv")
+print('Global')
+GLOBALINDEX = normalize_values("./0P0000YVZ3 Historiska data.csv")
+print('Japan')
+JAPANINDEX = normalize_values("./0P00000L2Y Historiska data.csv")
+
 
 
 
